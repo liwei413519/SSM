@@ -15,6 +15,31 @@ $(window).resize(function() {
 });
 
 /*------------------------------我的信息部分（登录注册）-------------------------------------------*/
+//退出系统
+$('#tologinout').on('click',function(){
+	if(window.confirm("提示:\n你真的要退出系统吗？")){
+		//发送退出的ajax请求
+		$.ajax({
+			url:"/SSM/user/loginout.do",
+			async:'false',
+			type:'get',
+			cache:'false',
+			success:function(data){
+				if(data=="success"){
+					//请求回到主页
+					location.href="/SSM/user/home.do";
+				}else{
+					var obj=data.evalJSON();
+					alert("信息提示:\n"+obj.fail);
+				}
+			},
+			error:function(data){
+				alert("请求发送错误：请检查网络设置！");
+			}
+		});
+	}
+});
+
 //点击我的信息弹出登录注册的提示框
 $('#tologin').on('click',function(){
 	$('#loginmodal').modal('toggle');
@@ -24,7 +49,8 @@ $('#regbtn').on('click',function(){
 	if(pwinf==true && userinf==true){
 		var username=$('#username').val().trim(); 
 		var password=$('#password').val().trim();
-		var json={"username":username,"password":password};
+		var usertype=$("input:radio[name='usertype']:checked").val();
+		var json={"username":username,"password":password,"usertype":usertype};
 		var post={data:JSON.stringify(json)};
 		/*这里我使用ajax请求*/
 		$.ajax({
@@ -66,7 +92,7 @@ $('#loginbtn').on('click',function(){
 					$("#loginbtn").popover('show');
 					//一段时间后自动刷新页面
 					var id;
-					id=window.setTimeout(fun,3000);
+					id=window.setTimeout(fun,1300);
 					function fun() { 
 						window.clearTimeout(id);
 						location.href="/SSM/user/home.do";
@@ -126,11 +152,15 @@ $('#username').on('blur',function(){
 					//设置登录按钮不可用
 					$('#regbtn').removeAttr('disabled');
 					$('#loginbtn').attr('disabled','disabled');
+					//设置用户类型可选
+					$("[name=usertype]").removeAttr('disabled');
 				}else{//用户存在,只能登录
 					$('#userinf').html('可以登录该用户');
 					//设置注册按钮不可用
 					$('#regbtn').attr('disabled','disabled');
 					$('#loginbtn').removeAttr('disabled');
+					//设置用户类型不可选同事去除选中状态
+					$("[name='usertype']").attr('disabled','disabled');
 				}
 			},
 			error:function(data){

@@ -21,7 +21,7 @@
 			<div class="container">
 				<div class="navbar-header">
 					<a href="#" class="navbar-brand" style="margin: 0;padding: 0;">
-						<img src="/SSM/img/logo.bmp" title="欢迎来到我的主页" class="img-circle" /></a>
+						<img src="/SSM/img/logo.bmp" title="<欢迎来到我的主页>" class="img-circle" /></a>
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
@@ -30,10 +30,15 @@
 				</div>
 				<div class="collapse navbar-collapse" id="navbar-collapse">
 					<ul class="nav navbar-nav navbar-right">
-						<li class="active"><a href=""><span class="glyphicon glyphicon-home"></span> 首页</a></li>
+						<li class="active"><a href="/SSM/user/home.do"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
 						<c:choose>
 							<c:when test="${user!=null}">
-								<li><a href="#" id="tologin"><span class="glyphicon glyphicon-apple"></span> 欢迎 ${user.uname }</a></li>
+								<!--  -->
+								<li>
+									<a href="#" id="welcome">
+										<span class="glyphicon glyphicon-apple"></span> 欢迎 ${user.uname }
+									</a>
+								</li>
 							</c:when>
 							<c:otherwise>
 								<li><a href="#" id="tologin"><span class="glyphicon glyphicon-log-in"></span> 我的信息</a></li>
@@ -130,6 +135,17 @@
         			</div>
         			<!-- 注脚 -->
         			<div class="modal-footer">
+        				<div id="usertype" class="radio">
+        					<label>
+        						<input type="radio" name="usertype" value="0" /><span class="text-warning">管理员</span>
+        					</label>
+        					<label>
+        						<input type="radio" name="usertype" value="1" /><span class="text-warning">个人企业</span>
+        					</label>
+        					<label>
+        						<input type="radio" name="usertype" value="2" checked="checked"/><span class="text-warning">毕业生</span>
+        					</label>
+        				</div>
         				<button id="regbtn" type="button" class="btn btn-default">注册</button>
         				<button id="loginbtn" type="button" class="btn btn-primary">登录</button>
         			</div>

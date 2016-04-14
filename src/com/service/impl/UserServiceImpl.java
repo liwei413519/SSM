@@ -20,6 +20,7 @@ public class UserServiceImpl implements UserService{
 		User user=new User();
 		user.setUname(v_reginf.getUsername());
 		user.setUpassword(v_reginf.getPassword());
+		user.setUtype(v_reginf.getUsertype());
 		return userMapper.insert(user);
 	}
 
