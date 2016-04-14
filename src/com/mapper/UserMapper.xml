@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.model.User" >
+    <id column="Uid" property="uid" jdbcType="INTEGER" />
+    <result column="Uname" property="uname" jdbcType="VARCHAR" />
+    <result column="Upassword" property="upassword" jdbcType="VARCHAR" />
+    <result column="Ulastlogintime" property="ulastlogintime" jdbcType="DATE" />
+    <result column="Ulogintimes" property="ulogintimes" jdbcType="INTEGER" />
+    <result column="Uloginstate" property="uloginstate" jdbcType="INTEGER" />
+    <result column="Utype" property="utype" jdbcType="INTEGER" />
+    <result column="Urealname" property="urealname" jdbcType="VARCHAR" />
+    <result column="Ukey" property="ukey" jdbcType="VARCHAR" />
+    <result column="Uschool" property="uschool" jdbcType="VARCHAR" />
+    <result column="Uemail" property="uemail" jdbcType="VARCHAR" />
+    <result column="Usex" property="usex" jdbcType="INTEGER" />
+    <result column="Uheight" property="uheight" jdbcType="INTEGER" />
+    <result column="Uphone" property="uphone" jdbcType="VARCHAR" />
+    <result column="Useldescribe" property="useldescribe" jdbcType="VARCHAR" />
+    <result column="Uaddress" property="uaddress" jdbcType="VARCHAR" />
+    <result column="Upicture" property="upicture" jdbcType="VARCHAR" />
+    <result column="Uidcard" property="uidcard" jdbcType="VARCHAR" />
+    <result column="Ubirthday" property="ubirthday" jdbcType="DATE" />
+    <result column="Uresume" property="uresume" jdbcType="VARCHAR" />
+    <result column="Column_21" property="column21" jdbcType="VARCHAR" />
+    <result column="Column_22" property="column22" jdbcType="VARCHAR" />
+    <result column="Column_23" property="column23" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Uid, Uname, Upassword, Ulastlogintime, Ulogintimes, Uloginstate, Utype, Urealname, 
+    Ukey, Uschool, Uemail, Usex, Uheight, Uphone, Useldescribe, Uaddress, Upicture, Uidcard, 
+    Ubirthday, Uresume, Column_21, Column_22, Column_23
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user
+    where Uid = #{uid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_user
+    where Uid = #{uid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.model.User" >
+    insert into t_user (Uid, Uname, Upassword, 
+      Ulastlogintime, Ulogintimes, Uloginstate, 
+      Utype, Urealname, Ukey, 
+      Uschool, Uemail, Usex, 
+      Uheight, Uphone, Useldescribe, 
+      Uaddress, Upicture, Uidcard, 
+      Ubirthday, Uresume, Column_21, 
+      Column_22, Column_23)
+    values (#{uid,jdbcType=INTEGER}, #{uname,jdbcType=VARCHAR}, #{upassword,jdbcType=VARCHAR}, 
+      #{ulastlogintime,jdbcType=DATE}, #{ulogintimes,jdbcType=INTEGER}, #{uloginstate,jdbcType=INTEGER}, 
+      #{utype,jdbcType=INTEGER}, #{urealname,jdbcType=VARCHAR}, #{ukey,jdbcType=VARCHAR}, 
+      #{uschool,jdbcType=VARCHAR}, #{uemail,jdbcType=VARCHAR}, #{usex,jdbcType=INTEGER}, 
+      #{uheight,jdbcType=INTEGER}, #{uphone,jdbcType=VARCHAR}, #{useldescribe,jdbcType=VARCHAR}, 
+      #{uaddress,jdbcType=VARCHAR}, #{upicture,jdbcType=VARCHAR}, #{uidcard,jdbcType=VARCHAR}, 
+      #{ubirthday,jdbcType=DATE}, #{uresume,jdbcType=VARCHAR}, #{column21,jdbcType=VARCHAR}, 
+      #{column22,jdbcType=VARCHAR}, #{column23,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.User" >
+    insert into t_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uid != null" >
+        Uid,
+      </if>
+      <if test="uname != null" >
+        Uname,
+      </if>
+      <if test="upassword != null" >
+        Upassword,
+      </if>
+      <if test="ulastlogintime != null" >
+        Ulastlogintime,
+      </if>
+      <if test="ulogintimes != null" >
+        Ulogintimes,
+      </if>
+      <if test="uloginstate != null" >
+        Uloginstate,
+      </if>
+      <if test="utype != null" >
+        Utype,
+      </if>
+      <if test="urealname != null" >
+        Urealname,
+      </if>
+      <if test="ukey != null" >
+        Ukey,
+      </if>
+      <if test="uschool != null" >
+        Uschool,
+      </if>
+      <if test="uemail != null" >
+        Uemail,
+      </if>
+      <if test="usex != null" >
+        Usex,
+      </if>
+      <if test="uheight != null" >
+        Uheight,
+      </if>
+      <if test="uphone != null" >
+        Uphone,
+      </if>
+      <if test="useldescribe != null" >
+        Useldescribe,
+      </if>
+      <if test="uaddress != null" >
+        Uaddress,
+      </if>
+      <if test="upicture != null" >
+        Upicture,
+      </if>
+      <if test="uidcard != null" >
+        Uidcard,
+      </if>
+      <if test="ubirthday != null" >
+        Ubirthday,
+      </if>
+      <if test="uresume != null" >
+        Uresume,
+      </if>
+      <if test="column21 != null" >
+        Column_21,
+      </if>
+      <if test="column22 != null" >
+        Column_22,
+      </if>
+      <if test="column23 != null" >
+        Column_23,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="uname != null" >
+        #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="upassword != null" >
+        #{upassword,jdbcType=VARCHAR},
+      </if>
+      <if test="ulastlogintime != null" >
+        #{ulastlogintime,jdbcType=DATE},
+      </if>
+      <if test="ulogintimes != null" >
+        #{ulogintimes,jdbcType=INTEGER},
+      </if>
+      <if test="uloginstate != null" >
+        #{uloginstate,jdbcType=INTEGER},
+      </if>
+      <if test="utype != null" >
+        #{utype,jdbcType=INTEGER},
+      </if>
+      <if test="urealname != null" >
+        #{urealname,jdbcType=VARCHAR},
+      </if>
+      <if test="ukey != null" >
+        #{ukey,jdbcType=VARCHAR},
+      </if>
+      <if test="uschool != null" >
+        #{uschool,jdbcType=VARCHAR},
+      </if>
+      <if test="uemail != null" >
+        #{uemail,jdbcType=VARCHAR},
+      </if>
+      <if test="usex != null" >
+        #{usex,jdbcType=INTEGER},
+      </if>
+      <if test="uheight != null" >
+        #{uheight,jdbcType=INTEGER},
+      </if>
+      <if test="uphone != null" >
+        #{uphone,jdbcType=VARCHAR},
+      </if>
+      <if test="useldescribe != null" >
+        #{useldescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="uaddress != null" >
+        #{uaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="upicture != null" >
+        #{upicture,jdbcType=VARCHAR},
+      </if>
+      <if test="uidcard != null" >
+        #{uidcard,jdbcType=VARCHAR},
+      </if>
+      <if test="ubirthday != null" >
+        #{ubirthday,jdbcType=DATE},
+      </if>
+      <if test="uresume != null" >
+        #{uresume,jdbcType=VARCHAR},
+      </if>
+      <if test="column21 != null" >
+        #{column21,jdbcType=VARCHAR},
+      </if>
+      <if test="column22 != null" >
+        #{column22,jdbcType=VARCHAR},
+      </if>
+      <if test="column23 != null" >
+        #{column23,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.User" >
+    update t_user
+    <set >
+      <if test="uname != null" >
+        Uname = #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="upassword != null" >
+        Upassword = #{upassword,jdbcType=VARCHAR},
+      </if>
+      <if test="ulastlogintime != null" >
+        Ulastlogintime = #{ulastlogintime,jdbcType=DATE},
+      </if>
+      <if test="ulogintimes != null" >
+        Ulogintimes = #{ulogintimes,jdbcType=INTEGER},
+      </if>
+      <if test="uloginstate != null" >
+        Uloginstate = #{uloginstate,jdbcType=INTEGER},
+      </if>
+      <if test="utype != null" >
+        Utype = #{utype,jdbcType=INTEGER},
+      </if>
+      <if test="urealname != null" >
+        Urealname = #{urealname,jdbcType=VARCHAR},
+      </if>
+      <if test="ukey != null" >
+        Ukey = #{ukey,jdbcType=VARCHAR},
+      </if>
+      <if test="uschool != null" >
+        Uschool = #{uschool,jdbcType=VARCHAR},
+      </if>
+      <if test="uemail != null" >
+        Uemail = #{uemail,jdbcType=VARCHAR},
+      </if>
+      <if test="usex != null" >
+        Usex = #{usex,jdbcType=INTEGER},
+      </if>
+      <if test="uheight != null" >
+        Uheight = #{uheight,jdbcType=INTEGER},
+      </if>
+      <if test="uphone != null" >
+        Uphone = #{uphone,jdbcType=VARCHAR},
+      </if>
+      <if test="useldescribe != null" >
+        Useldescribe = #{useldescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="uaddress != null" >
+        Uaddress = #{uaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="upicture != null" >
+        Upicture = #{upicture,jdbcType=VARCHAR},
+      </if>
+      <if test="uidcard != null" >
+        Uidcard = #{uidcard,jdbcType=VARCHAR},
+      </if>
+      <if test="ubirthday != null" >
+        Ubirthday = #{ubirthday,jdbcType=DATE},
+      </if>
+      <if test="uresume != null" >
+        Uresume = #{uresume,jdbcType=VARCHAR},
+      </if>
+      <if test="column21 != null" >
+        Column_21 = #{column21,jdbcType=VARCHAR},
+      </if>
+      <if test="column22 != null" >
+        Column_22 = #{column22,jdbcType=VARCHAR},
+      </if>
+      <if test="column23 != null" >
+        Column_23 = #{column23,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Uid = #{uid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.User" >
+    update t_user
+    set Uname = #{uname,jdbcType=VARCHAR},
+      Upassword = #{upassword,jdbcType=VARCHAR},
+      Ulastlogintime = #{ulastlogintime,jdbcType=DATE},
+      Ulogintimes = #{ulogintimes,jdbcType=INTEGER},
+      Uloginstate = #{uloginstate,jdbcType=INTEGER},
+      Utype = #{utype,jdbcType=INTEGER},
+      Urealname = #{urealname,jdbcType=VARCHAR},
+      Ukey = #{ukey,jdbcType=VARCHAR},
+      Uschool = #{uschool,jdbcType=VARCHAR},
+      Uemail = #{uemail,jdbcType=VARCHAR},
+      Usex = #{usex,jdbcType=INTEGER},
+      Uheight = #{uheight,jdbcType=INTEGER},
+      Uphone = #{uphone,jdbcType=VARCHAR},
+      Useldescribe = #{useldescribe,jdbcType=VARCHAR},
+      Uaddress = #{uaddress,jdbcType=VARCHAR},
+      Upicture = #{upicture,jdbcType=VARCHAR},
+      Uidcard = #{uidcard,jdbcType=VARCHAR},
+      Ubirthday = #{ubirthday,jdbcType=DATE},
+      Uresume = #{uresume,jdbcType=VARCHAR},
+      Column_21 = #{column21,jdbcType=VARCHAR},
+      Column_22 = #{column22,jdbcType=VARCHAR},
+      Column_23 = #{column23,jdbcType=VARCHAR}
+    where Uid = #{uid,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 下面是自己增加的 -->
+  <select id="selectByUsername" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user
+    where Uname = #{uname,jdbcType=VARCHAR}
+  </select>
+</mapper>

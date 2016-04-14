@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.MsgMapper" >
+  <resultMap id="BaseResultMap" type="com.model.Msg" >
+    <id column="T_Mid" property="tMid" jdbcType="INTEGER" />
+    <result column="T_Mhead" property="tMhead" jdbcType="VARCHAR" />
+    <result column="T_Mpicture" property="tMpicture" jdbcType="VARCHAR" />
+    <result column="T_Mbody" property="tMbody" jdbcType="VARCHAR" />
+    <result column="T_Mremark" property="tMremark" jdbcType="VARCHAR" />
+    <result column="T_Mdate" property="tMdate" jdbcType="DATE" />
+    <result column="T_Mtype" property="tMtype" jdbcType="INTEGER" />
+    <result column="T_Mread" property="tMread" jdbcType="INTEGER" />
+    <result column="T_Mstate" property="tMstate" jdbcType="INTEGER" />
+    <result column="Uid" property="uid" jdbcType="INTEGER" />
+    <result column="Column_11" property="column11" jdbcType="VARCHAR" />
+    <result column="Column_12" property="column12" jdbcType="VARCHAR" />
+    <result column="Column_13" property="column13" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    T_Mid, T_Mhead, T_Mpicture, T_Mbody, T_Mremark, T_Mdate, T_Mtype, T_Mread, T_Mstate, 
+    Uid, Column_11, Column_12, Column_13
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_msg
+    where T_Mid = #{tMid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_msg
+    where T_Mid = #{tMid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.model.Msg" >
+    insert into t_msg (T_Mid, T_Mhead, T_Mpicture, 
+      T_Mbody, T_Mremark, T_Mdate, 
+      T_Mtype, T_Mread, T_Mstate, 
+      Uid, Column_11, Column_12, 
+      Column_13)
+    values (#{tMid,jdbcType=INTEGER}, #{tMhead,jdbcType=VARCHAR}, #{tMpicture,jdbcType=VARCHAR}, 
+      #{tMbody,jdbcType=VARCHAR}, #{tMremark,jdbcType=VARCHAR}, #{tMdate,jdbcType=DATE}, 
+      #{tMtype,jdbcType=INTEGER}, #{tMread,jdbcType=INTEGER}, #{tMstate,jdbcType=INTEGER}, 
+      #{uid,jdbcType=INTEGER}, #{column11,jdbcType=VARCHAR}, #{column12,jdbcType=VARCHAR}, 
+      #{column13,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.Msg" >
+    insert into t_msg
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tMid != null" >
+        T_Mid,
+      </if>
+      <if test="tMhead != null" >
+        T_Mhead,
+      </if>
+      <if test="tMpicture != null" >
+        T_Mpicture,
+      </if>
+      <if test="tMbody != null" >
+        T_Mbody,
+      </if>
+      <if test="tMremark != null" >
+        T_Mremark,
+      </if>
+      <if test="tMdate != null" >
+        T_Mdate,
+      </if>
+      <if test="tMtype != null" >
+        T_Mtype,
+      </if>
+      <if test="tMread != null" >
+        T_Mread,
+      </if>
+      <if test="tMstate != null" >
+        T_Mstate,
+      </if>
+      <if test="uid != null" >
+        Uid,
+      </if>
+      <if test="column11 != null" >
+        Column_11,
+      </if>
+      <if test="column12 != null" >
+        Column_12,
+      </if>
+      <if test="column13 != null" >
+        Column_13,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tMid != null" >
+        #{tMid,jdbcType=INTEGER},
+      </if>
+      <if test="tMhead != null" >
+        #{tMhead,jdbcType=VARCHAR},
+      </if>
+      <if test="tMpicture != null" >
+        #{tMpicture,jdbcType=VARCHAR},
+      </if>
+      <if test="tMbody != null" >
+        #{tMbody,jdbcType=VARCHAR},
+      </if>
+      <if test="tMremark != null" >
+        #{tMremark,jdbcType=VARCHAR},
+      </if>
+      <if test="tMdate != null" >
+        #{tMdate,jdbcType=DATE},
+      </if>
+      <if test="tMtype != null" >
+        #{tMtype,jdbcType=INTEGER},
+      </if>
+      <if test="tMread != null" >
+        #{tMread,jdbcType=INTEGER},
+      </if>
+      <if test="tMstate != null" >
+        #{tMstate,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="column11 != null" >
+        #{column11,jdbcType=VARCHAR},
+      </if>
+      <if test="column12 != null" >
+        #{column12,jdbcType=VARCHAR},
+      </if>
+      <if test="column13 != null" >
+        #{column13,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.Msg" >
+    update t_msg
+    <set >
+      <if test="tMhead != null" >
+        T_Mhead = #{tMhead,jdbcType=VARCHAR},
+      </if>
+      <if test="tMpicture != null" >
+        T_Mpicture = #{tMpicture,jdbcType=VARCHAR},
+      </if>
+      <if test="tMbody != null" >
+        T_Mbody = #{tMbody,jdbcType=VARCHAR},
+      </if>
+      <if test="tMremark != null" >
+        T_Mremark = #{tMremark,jdbcType=VARCHAR},
+      </if>
+      <if test="tMdate != null" >
+        T_Mdate = #{tMdate,jdbcType=DATE},
+      </if>
+      <if test="tMtype != null" >
+        T_Mtype = #{tMtype,jdbcType=INTEGER},
+      </if>
+      <if test="tMread != null" >
+        T_Mread = #{tMread,jdbcType=INTEGER},
+      </if>
+      <if test="tMstate != null" >
+        T_Mstate = #{tMstate,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        Uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="column11 != null" >
+        Column_11 = #{column11,jdbcType=VARCHAR},
+      </if>
+      <if test="column12 != null" >
+        Column_12 = #{column12,jdbcType=VARCHAR},
+      </if>
+      <if test="column13 != null" >
+        Column_13 = #{column13,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where T_Mid = #{tMid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.Msg" >
+    update t_msg
+    set T_Mhead = #{tMhead,jdbcType=VARCHAR},
+      T_Mpicture = #{tMpicture,jdbcType=VARCHAR},
+      T_Mbody = #{tMbody,jdbcType=VARCHAR},
+      T_Mremark = #{tMremark,jdbcType=VARCHAR},
+      T_Mdate = #{tMdate,jdbcType=DATE},
+      T_Mtype = #{tMtype,jdbcType=INTEGER},
+      T_Mread = #{tMread,jdbcType=INTEGER},
+      T_Mstate = #{tMstate,jdbcType=INTEGER},
+      Uid = #{uid,jdbcType=INTEGER},
+      Column_11 = #{column11,jdbcType=VARCHAR},
+      Column_12 = #{column12,jdbcType=VARCHAR},
+      Column_13 = #{column13,jdbcType=VARCHAR}
+    where T_Mid = #{tMid,jdbcType=INTEGER}
+  </update>
+</mapper>
