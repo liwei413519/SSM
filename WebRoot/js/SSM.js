@@ -44,6 +44,15 @@ $('#tologinout').on('click',function(){
 $('#tologin').on('click',function(){
 	$('#loginmodal').modal('toggle');
 });
+function refreshtohome(){
+	//一段时间后自动刷新页面到主页
+	var id;
+	id=window.setTimeout(fun,1300);
+	function fun() { 
+		window.clearTimeout(id);
+		location.href="/SSM/user/home.do";
+	}
+}
 //模态框中的注册和登录按钮事件
 $('#regbtn').on('click',function(){
 	if(pwinf==true && userinf==true){
@@ -61,7 +70,10 @@ $('#regbtn').on('click',function(){
 			cache:'false',
 			success:function(data){
 				if(data=="success"){
-					alert("成功注册");
+					//这里提示用户登录成功
+					$("#regbtn").popover('show');
+					//一段时间后自动刷新页面
+					refreshtohome();
 				}else{
 					var obj=data.evalJSON();
 					alert("信息提示:\n"+obj.fail);
@@ -91,12 +103,7 @@ $('#loginbtn').on('click',function(){
 					//这里提示用户登录成功
 					$("#loginbtn").popover('show');
 					//一段时间后自动刷新页面
-					var id;
-					id=window.setTimeout(fun,1300);
-					function fun() { 
-						window.clearTimeout(id);
-						location.href="/SSM/user/home.do";
-					}
+					refreshtohome();
 				}else{
 					var obj=data.evalJSON();
 					alert("信息提示:\n"+obj.fail);
@@ -196,6 +203,17 @@ $(function(){
 	};
 	$('#loginbtn').popover(options);
 });
+$(function(){
+	var options={
+		title:"<h3><span class='text-success text-center'>注册成功</span></h3>",
+		content:"<h6><span class='text-primary'>欢迎使用大学生就业推荐系统！</span></br></br></br></br><span class='text-danger'>自动登录中。。。</span></h6>",
+		trigger:'manual',
+		html:true,
+		placement:'left',
+		delay: { show: 500, hide: 100}
+	};
+	$('#regbtn').popover(options);
+});
 //密码输入框大小写提示
 $(function(){
   function isIE(){ 
@@ -244,5 +262,4 @@ $(function(){
 		delay: { show: 0, hide: 0}
 	};
 	$('#inputinf').popover(options);
-//	$('').popover(options);
 });

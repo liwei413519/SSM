@@ -47,6 +47,9 @@ public class UserController {
 		//调用服务层注册用户
 		int result=userService.regist(regInf);
 		if(result>0){
+			//注册成功:将用户保存到session完成自动登录
+			User user=userService.getUser(json.getString("username"));
+			request.getSession().setAttribute("user", user);
 			return "success";
 		}
 		return "{'fail':'数据库的未知的错误！'}";
