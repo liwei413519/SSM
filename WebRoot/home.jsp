@@ -33,7 +33,7 @@
 						<li class="active"><a href="/SSM/user/home.do"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
 						<c:choose>
 							<c:when test="${user!=null}">
-								<!--  -->
+								<!-- 根据用户类型选择 -->
 								<li>
 									<a href="#" id="welcome">
 										<span class="glyphicon glyphicon-apple"></span> 欢迎 ${user.uname }
