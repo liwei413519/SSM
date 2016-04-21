@@ -7,11 +7,11 @@ package com.model.vo;
 public class V_RegInf {
 	private String username;
 	private String password;
-	private int usertype;
-	public int getUsertype() {
+	private String usertype;
+	public String getUsertype() {
 		return usertype;
 	}
-	public void setUsertype(int usertype) {
+	public void setUsertype(String usertype) {
 		this.usertype = usertype;
 	}
 	public String getUsername() {

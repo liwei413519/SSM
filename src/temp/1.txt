@@ -1,0 +1,11 @@
+<!-- 下面是自己增加的 -->
+  <select id="selectByUsername" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user
+    where Uname = #{uname,jdbcType=VARCHAR}
+  </select>
+  
+  
+   //下面是自己增加的
+    User selectByUsername(String uname);

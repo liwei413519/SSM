@@ -16,7 +16,7 @@
      <mvc:annotation-driven />
  
      <!--
-         配置静态资源，直接映射到对应的文件夹，不被DispatcherServlet处理，3.04新增功能，需要重新设置spring-mvc-3.0.xsd
+      	   配置静态资源，直接映射到对应的文件夹，不被DispatcherServlet处理，3.04新增功能，需要重新设置spring-mvc-3.0.xsd
      -->
      <mvc:resources mapping="/img/**" location="/img/" />
      <mvc:resources mapping="/js/**" location="/js/" />
@@ -32,4 +32,10 @@
          <property name="prefix" value="/" />
          <property name="suffix" value=".jsp" />
      </bean>
+
+	<!-- 上传文件拦截，设置最大上传文件大小 10M=10*1024*1024(B)=10485760 bytes -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="10485760" />
+	</bean>
  </beans>

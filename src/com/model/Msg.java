@@ -1,7 +1,5 @@
 package com.model;
 
-import java.util.Date;
-
 public class Msg {
     private Integer tMid;
 
@@ -13,7 +11,19 @@ public class Msg {
 
     private String tMremark;
 
-    private Date tMdate;
+    private String tMdate;
+
+    private String tMjobname;
+
+    private String tMjobmarjor;
+
+    private String tMjobplace;
+
+    private String tMjobsalary;
+
+    private String tMjobcount;
+
+    private String tMjobcet;
 
     private Integer tMtype;
 
@@ -69,12 +79,60 @@ public class Msg {
         this.tMremark = tMremark == null ? null : tMremark.trim();
     }
 
-    public Date gettMdate() {
+    public String gettMdate() {
         return tMdate;
     }
 
-    public void settMdate(Date tMdate) {
-        this.tMdate = tMdate;
+    public void settMdate(String tMdate) {
+        this.tMdate = tMdate == null ? null : tMdate.trim();
+    }
+
+    public String gettMjobname() {
+        return tMjobname;
+    }
+
+    public void settMjobname(String tMjobname) {
+        this.tMjobname = tMjobname == null ? null : tMjobname.trim();
+    }
+
+    public String gettMjobmarjor() {
+        return tMjobmarjor;
+    }
+
+    public void settMjobmarjor(String tMjobmarjor) {
+        this.tMjobmarjor = tMjobmarjor == null ? null : tMjobmarjor.trim();
+    }
+
+    public String gettMjobplace() {
+        return tMjobplace;
+    }
+
+    public void settMjobplace(String tMjobplace) {
+        this.tMjobplace = tMjobplace == null ? null : tMjobplace.trim();
+    }
+
+    public String gettMjobsalary() {
+        return tMjobsalary;
+    }
+
+    public void settMjobsalary(String tMjobsalary) {
+        this.tMjobsalary = tMjobsalary == null ? null : tMjobsalary.trim();
+    }
+
+    public String gettMjobcount() {
+        return tMjobcount;
+    }
+
+    public void settMjobcount(String tMjobcount) {
+        this.tMjobcount = tMjobcount == null ? null : tMjobcount.trim();
+    }
+
+    public String gettMjobcet() {
+        return tMjobcet;
+    }
+
+    public void settMjobcet(String tMjobcet) {
+        this.tMjobcet = tMjobcet == null ? null : tMjobcet.trim();
     }
 
     public Integer gettMtype() {

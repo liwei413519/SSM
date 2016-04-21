@@ -5,10 +5,11 @@
     <id column="Uid" property="uid" jdbcType="INTEGER" />
     <result column="Uname" property="uname" jdbcType="VARCHAR" />
     <result column="Upassword" property="upassword" jdbcType="VARCHAR" />
-    <result column="Ulastlogintime" property="ulastlogintime" jdbcType="DATE" />
+    <result column="Ulastlogintime" property="ulastlogintime" jdbcType="VARCHAR" />
+    <result column="Ubirthday" property="ubirthday" jdbcType="VARCHAR" />
     <result column="Ulogintimes" property="ulogintimes" jdbcType="INTEGER" />
     <result column="Uloginstate" property="uloginstate" jdbcType="INTEGER" />
-    <result column="Utype" property="utype" jdbcType="INTEGER" />
+    <result column="Utype" property="utype" jdbcType="VARCHAR" />
     <result column="Urealname" property="urealname" jdbcType="VARCHAR" />
     <result column="Ukey" property="ukey" jdbcType="VARCHAR" />
     <result column="Uschool" property="uschool" jdbcType="VARCHAR" />
@@ -20,16 +21,15 @@
     <result column="Uaddress" property="uaddress" jdbcType="VARCHAR" />
     <result column="Upicture" property="upicture" jdbcType="VARCHAR" />
     <result column="Uidcard" property="uidcard" jdbcType="VARCHAR" />
-    <result column="Ubirthday" property="ubirthday" jdbcType="DATE" />
     <result column="Uresume" property="uresume" jdbcType="VARCHAR" />
     <result column="Column_21" property="column21" jdbcType="VARCHAR" />
     <result column="Column_22" property="column22" jdbcType="VARCHAR" />
     <result column="Column_23" property="column23" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    Uid, Uname, Upassword, Ulastlogintime, Ulogintimes, Uloginstate, Utype, Urealname, 
-    Ukey, Uschool, Uemail, Usex, Uheight, Uphone, Useldescribe, Uaddress, Upicture, Uidcard, 
-    Ubirthday, Uresume, Column_21, Column_22, Column_23
+    Uid, Uname, Upassword, Ulastlogintime, Ubirthday, Ulogintimes, Uloginstate, Utype, 
+    Urealname, Ukey, Uschool, Uemail, Usex, Uheight, Uphone, Useldescribe, Uaddress, 
+    Upicture, Uidcard, Uresume, Column_21, Column_22, Column_23
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -43,20 +43,20 @@
   </delete>
   <insert id="insert" parameterType="com.model.User" >
     insert into t_user (Uid, Uname, Upassword, 
-      Ulastlogintime, Ulogintimes, Uloginstate, 
-      Utype, Urealname, Ukey, 
-      Uschool, Uemail, Usex, 
-      Uheight, Uphone, Useldescribe, 
-      Uaddress, Upicture, Uidcard, 
-      Ubirthday, Uresume, Column_21, 
+      Ulastlogintime, Ubirthday, Ulogintimes, 
+      Uloginstate, Utype, Urealname, 
+      Ukey, Uschool, Uemail, 
+      Usex, Uheight, Uphone, 
+      Useldescribe, Uaddress, Upicture, 
+      Uidcard, Uresume, Column_21, 
       Column_22, Column_23)
     values (#{uid,jdbcType=INTEGER}, #{uname,jdbcType=VARCHAR}, #{upassword,jdbcType=VARCHAR}, 
-      #{ulastlogintime,jdbcType=DATE}, #{ulogintimes,jdbcType=INTEGER}, #{uloginstate,jdbcType=INTEGER}, 
-      #{utype,jdbcType=INTEGER}, #{urealname,jdbcType=VARCHAR}, #{ukey,jdbcType=VARCHAR}, 
-      #{uschool,jdbcType=VARCHAR}, #{uemail,jdbcType=VARCHAR}, #{usex,jdbcType=INTEGER}, 
-      #{uheight,jdbcType=INTEGER}, #{uphone,jdbcType=VARCHAR}, #{useldescribe,jdbcType=VARCHAR}, 
-      #{uaddress,jdbcType=VARCHAR}, #{upicture,jdbcType=VARCHAR}, #{uidcard,jdbcType=VARCHAR}, 
-      #{ubirthday,jdbcType=DATE}, #{uresume,jdbcType=VARCHAR}, #{column21,jdbcType=VARCHAR}, 
+      #{ulastlogintime,jdbcType=VARCHAR}, #{ubirthday,jdbcType=VARCHAR}, #{ulogintimes,jdbcType=INTEGER}, 
+      #{uloginstate,jdbcType=INTEGER}, #{utype,jdbcType=VARCHAR}, #{urealname,jdbcType=VARCHAR}, 
+      #{ukey,jdbcType=VARCHAR}, #{uschool,jdbcType=VARCHAR}, #{uemail,jdbcType=VARCHAR}, 
+      #{usex,jdbcType=INTEGER}, #{uheight,jdbcType=INTEGER}, #{uphone,jdbcType=VARCHAR}, 
+      #{useldescribe,jdbcType=VARCHAR}, #{uaddress,jdbcType=VARCHAR}, #{upicture,jdbcType=VARCHAR}, 
+      #{uidcard,jdbcType=VARCHAR}, #{uresume,jdbcType=VARCHAR}, #{column21,jdbcType=VARCHAR}, 
       #{column22,jdbcType=VARCHAR}, #{column23,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.model.User" >
@@ -73,6 +73,9 @@
       </if>
       <if test="ulastlogintime != null" >
         Ulastlogintime,
+      </if>
+      <if test="ubirthday != null" >
+        Ubirthday,
       </if>
       <if test="ulogintimes != null" >
         Ulogintimes,
@@ -116,9 +119,6 @@
       <if test="uidcard != null" >
         Uidcard,
       </if>
-      <if test="ubirthday != null" >
-        Ubirthday,
-      </if>
       <if test="uresume != null" >
         Uresume,
       </if>
@@ -143,7 +143,10 @@
         #{upassword,jdbcType=VARCHAR},
       </if>
       <if test="ulastlogintime != null" >
-        #{ulastlogintime,jdbcType=DATE},
+        #{ulastlogintime,jdbcType=VARCHAR},
+      </if>
+      <if test="ubirthday != null" >
+        #{ubirthday,jdbcType=VARCHAR},
       </if>
       <if test="ulogintimes != null" >
         #{ulogintimes,jdbcType=INTEGER},
@@ -152,7 +155,7 @@
         #{uloginstate,jdbcType=INTEGER},
       </if>
       <if test="utype != null" >
-        #{utype,jdbcType=INTEGER},
+        #{utype,jdbcType=VARCHAR},
       </if>
       <if test="urealname != null" >
         #{urealname,jdbcType=VARCHAR},
@@ -187,9 +190,6 @@
       <if test="uidcard != null" >
         #{uidcard,jdbcType=VARCHAR},
       </if>
-      <if test="ubirthday != null" >
-        #{ubirthday,jdbcType=DATE},
-      </if>
       <if test="uresume != null" >
         #{uresume,jdbcType=VARCHAR},
       </if>
@@ -214,7 +214,10 @@
         Upassword = #{upassword,jdbcType=VARCHAR},
       </if>
       <if test="ulastlogintime != null" >
-        Ulastlogintime = #{ulastlogintime,jdbcType=DATE},
+        Ulastlogintime = #{ulastlogintime,jdbcType=VARCHAR},
+      </if>
+      <if test="ubirthday != null" >
+        Ubirthday = #{ubirthday,jdbcType=VARCHAR},
       </if>
       <if test="ulogintimes != null" >
         Ulogintimes = #{ulogintimes,jdbcType=INTEGER},
@@ -223,7 +226,7 @@
         Uloginstate = #{uloginstate,jdbcType=INTEGER},
       </if>
       <if test="utype != null" >
-        Utype = #{utype,jdbcType=INTEGER},
+        Utype = #{utype,jdbcType=VARCHAR},
       </if>
       <if test="urealname != null" >
         Urealname = #{urealname,jdbcType=VARCHAR},
@@ -258,9 +261,6 @@
       <if test="uidcard != null" >
         Uidcard = #{uidcard,jdbcType=VARCHAR},
       </if>
-      <if test="ubirthday != null" >
-        Ubirthday = #{ubirthday,jdbcType=DATE},
-      </if>
       <if test="uresume != null" >
         Uresume = #{uresume,jdbcType=VARCHAR},
       </if>
@@ -280,10 +280,11 @@
     update t_user
     set Uname = #{uname,jdbcType=VARCHAR},
       Upassword = #{upassword,jdbcType=VARCHAR},
-      Ulastlogintime = #{ulastlogintime,jdbcType=DATE},
+      Ulastlogintime = #{ulastlogintime,jdbcType=VARCHAR},
+      Ubirthday = #{ubirthday,jdbcType=VARCHAR},
       Ulogintimes = #{ulogintimes,jdbcType=INTEGER},
       Uloginstate = #{uloginstate,jdbcType=INTEGER},
-      Utype = #{utype,jdbcType=INTEGER},
+      Utype = #{utype,jdbcType=VARCHAR},
       Urealname = #{urealname,jdbcType=VARCHAR},
       Ukey = #{ukey,jdbcType=VARCHAR},
       Uschool = #{uschool,jdbcType=VARCHAR},
@@ -295,14 +296,12 @@
       Uaddress = #{uaddress,jdbcType=VARCHAR},
       Upicture = #{upicture,jdbcType=VARCHAR},
       Uidcard = #{uidcard,jdbcType=VARCHAR},
-      Ubirthday = #{ubirthday,jdbcType=DATE},
       Uresume = #{uresume,jdbcType=VARCHAR},
       Column_21 = #{column21,jdbcType=VARCHAR},
       Column_22 = #{column22,jdbcType=VARCHAR},
       Column_23 = #{column23,jdbcType=VARCHAR}
     where Uid = #{uid,jdbcType=INTEGER}
   </update>
-  
   <!-- 下面是自己增加的 -->
   <select id="selectByUsername" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 

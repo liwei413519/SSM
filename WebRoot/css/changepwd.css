@@ -1,0 +1,9 @@
+/*设置密码修改表单的*/
+.pwdmargin{
+	margin:0px 0px 10px 0px;
+}
+/*设置整个改密码表单的样式*/
+#pwddiv{
+	color:#121;
+	margin-top:50px;
+}

@@ -1,7 +1,5 @@
 package com.model;
 
-import java.util.Date;
-
 public class User {
     private Integer uid;
 
@@ -9,13 +7,15 @@ public class User {
 
     private String upassword;
 
-    private Date ulastlogintime;
+    private String ulastlogintime;
+
+    private String ubirthday;
 
     private Integer ulogintimes;
 
     private Integer uloginstate;
 
-    private Integer utype;
+    private String utype;
 
     private String urealname;
 
@@ -38,8 +38,6 @@ public class User {
     private String upicture;
 
     private String uidcard;
-
-    private Date ubirthday;
 
     private String uresume;
 
@@ -73,12 +71,20 @@ public class User {
         this.upassword = upassword == null ? null : upassword.trim();
     }
 
-    public Date getUlastlogintime() {
+    public String getUlastlogintime() {
         return ulastlogintime;
     }
 
-    public void setUlastlogintime(Date ulastlogintime) {
-        this.ulastlogintime = ulastlogintime;
+    public void setUlastlogintime(String ulastlogintime) {
+        this.ulastlogintime = ulastlogintime == null ? null : ulastlogintime.trim();
+    }
+
+    public String getUbirthday() {
+        return ubirthday;
+    }
+
+    public void setUbirthday(String ubirthday) {
+        this.ubirthday = ubirthday == null ? null : ubirthday.trim();
     }
 
     public Integer getUlogintimes() {
@@ -97,12 +103,12 @@ public class User {
         this.uloginstate = uloginstate;
     }
 
-    public Integer getUtype() {
+    public String getUtype() {
         return utype;
     }
 
-    public void setUtype(Integer utype) {
-        this.utype = utype;
+    public void setUtype(String utype) {
+        this.utype = utype == null ? null : utype.trim();
     }
 
     public String getUrealname() {
@@ -191,14 +197,6 @@ public class User {
 
     public void setUidcard(String uidcard) {
         this.uidcard = uidcard == null ? null : uidcard.trim();
-    }
-
-    public Date getUbirthday() {
-        return ubirthday;
-    }
-
-    public void setUbirthday(Date ubirthday) {
-        this.ubirthday = ubirthday;
     }
 
     public String getUresume() {
