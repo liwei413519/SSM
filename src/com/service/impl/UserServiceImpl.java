@@ -85,4 +85,8 @@ public class UserServiceImpl implements UserService{
 		}
 		return false;
 	}
+
+	public User getUser(int userid) {
+		return userMapper.selectByPrimaryKey(userid);
+	}
 }

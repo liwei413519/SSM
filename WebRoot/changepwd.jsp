@@ -18,41 +18,7 @@
       	时间：2016-03-31
       	描述：响应式导航组件
       -->
-		<nav class="navbar navbar-default navbar-fixed-top">
-			<div class="container">
-				<div class="navbar-header">
-					<a href="#" class="navbar-brand" style="margin: 0;padding: 0;">
-						<img src="/SSM/img/logo.png" title="<欢迎来到我的主页>" class="img-rounded" /></a>
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-				</div>
-				<div class="collapse navbar-collapse" id="navbar-collapse">
-					<ul class="nav navbar-nav navbar-right">
-						<li class="active"><a href="/SSM/user/home.do"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
-						<c:choose>
-							<c:when test="${user!=null}">
-								<li class="dropdown" id="usermenu">
-									<a href="#" id="welcome" data-toggle="dropdown" ><span class="dropdown-toggle glyphicon glyphicon-apple"></span> {{${user.utype}}} ${empty user.urealname?user.uname:user.urealname }<span class="caret"></span></a>
-									<!-- 根据用户类型选择 Vue实现-->
-									<ul class="dropdown-menu">
-										<li v-for="menu in menus.${user.utype}">
-											{{{menu.item}}}
-										</li>
-									</ul>
-								</li>
-							</c:when>
-							<c:otherwise>
-								<li><a href="#" id="tologin">我的信息</a></li>
-							</c:otherwise>
-						</c:choose>
-						<li><a href="#" id="tologinout"><span class="glyphicon glyphicon-log-out"></span> 退出</a></li>
-					</ul>
-				</div>
-			</div>
-		</nav>
+		<%@ include file="/common/head.jsp" %>
 		
 		<!--
         	作者：332068039@qq.com
@@ -127,12 +93,7 @@
       	时间：2016-03-31
       	描述：foot部分
       	-->
-		<footer id="footer" class="text-muted">
-			<div class="container">
-				<p>企业系统| 合作事宜| 版权投诉</p>
-				<p>苏ICP 备12345678. © 1993-2016 大学生推荐系统. Powered by PANZUHONG.</p>
-			</div>
-		</footer>
+		<%@include file="/common/foot.html" %>
 		
 		<script type="text/javascript" src="/SSM/js/prototype-1.6.0.3.js"></script>
 		<script src="/SSM/js/jquery.min.js"></script>

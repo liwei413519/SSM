@@ -8,24 +8,18 @@
     <result column="T_Mbody" property="tMbody" jdbcType="VARCHAR" />
     <result column="T_Mremark" property="tMremark" jdbcType="VARCHAR" />
     <result column="T_Mdate" property="tMdate" jdbcType="VARCHAR" />
-    <result column="T_Mjobname" property="tMjobname" jdbcType="VARCHAR" />
-    <result column="T_Mjobmarjor" property="tMjobmarjor" jdbcType="VARCHAR" />
-    <result column="T_Mjobplace" property="tMjobplace" jdbcType="VARCHAR" />
-    <result column="T_Mjobsalary" property="tMjobsalary" jdbcType="VARCHAR" />
-    <result column="T_Mjobcount" property="tMjobcount" jdbcType="VARCHAR" />
-    <result column="T_Mjobcet" property="tMjobcet" jdbcType="VARCHAR" />
     <result column="T_Mtype" property="tMtype" jdbcType="INTEGER" />
     <result column="T_Mread" property="tMread" jdbcType="INTEGER" />
     <result column="T_Mstate" property="tMstate" jdbcType="INTEGER" />
-    <result column="Uid" property="uid" jdbcType="INTEGER" />
+    <result column="T_Mfrom" property="tMfrom" jdbcType="INTEGER" />
+    <result column="T_Mto" property="tMto" jdbcType="INTEGER" />
     <result column="Column_11" property="column11" jdbcType="VARCHAR" />
     <result column="Column_12" property="column12" jdbcType="VARCHAR" />
     <result column="Column_13" property="column13" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    T_Mid, T_Mhead, T_Mpicture, T_Mbody, T_Mremark, T_Mdate, T_Mjobname, T_Mjobmarjor, 
-    T_Mjobplace, T_Mjobsalary, T_Mjobcount, T_Mjobcet, T_Mtype, T_Mread, T_Mstate, Uid, 
-    Column_11, Column_12, Column_13
+    T_Mid, T_Mhead, T_Mpicture, T_Mbody, T_Mremark, T_Mdate, T_Mtype, T_Mread, T_Mstate, 
+    T_Mfrom, T_Mto, Column_11, Column_12, Column_13
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -40,18 +34,14 @@
   <insert id="insert" parameterType="com.model.Msg" >
     insert into t_msg (T_Mid, T_Mhead, T_Mpicture, 
       T_Mbody, T_Mremark, T_Mdate, 
-      T_Mjobname, T_Mjobmarjor, T_Mjobplace, 
-      T_Mjobsalary, T_Mjobcount, T_Mjobcet, 
       T_Mtype, T_Mread, T_Mstate, 
-      Uid, Column_11, Column_12, 
-      Column_13)
+      T_Mfrom, T_Mto, Column_11, 
+      Column_12, Column_13)
     values (#{tMid,jdbcType=INTEGER}, #{tMhead,jdbcType=VARCHAR}, #{tMpicture,jdbcType=VARCHAR}, 
       #{tMbody,jdbcType=VARCHAR}, #{tMremark,jdbcType=VARCHAR}, #{tMdate,jdbcType=VARCHAR}, 
-      #{tMjobname,jdbcType=VARCHAR}, #{tMjobmarjor,jdbcType=VARCHAR}, #{tMjobplace,jdbcType=VARCHAR}, 
-      #{tMjobsalary,jdbcType=VARCHAR}, #{tMjobcount,jdbcType=VARCHAR}, #{tMjobcet,jdbcType=VARCHAR}, 
       #{tMtype,jdbcType=INTEGER}, #{tMread,jdbcType=INTEGER}, #{tMstate,jdbcType=INTEGER}, 
-      #{uid,jdbcType=INTEGER}, #{column11,jdbcType=VARCHAR}, #{column12,jdbcType=VARCHAR}, 
-      #{column13,jdbcType=VARCHAR})
+      #{tMfrom,jdbcType=INTEGER}, #{tMto,jdbcType=INTEGER}, #{column11,jdbcType=VARCHAR}, 
+      #{column12,jdbcType=VARCHAR}, #{column13,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.model.Msg" >
     insert into t_msg
@@ -74,24 +64,6 @@
       <if test="tMdate != null" >
         T_Mdate,
       </if>
-      <if test="tMjobname != null" >
-        T_Mjobname,
-      </if>
-      <if test="tMjobmarjor != null" >
-        T_Mjobmarjor,
-      </if>
-      <if test="tMjobplace != null" >
-        T_Mjobplace,
-      </if>
-      <if test="tMjobsalary != null" >
-        T_Mjobsalary,
-      </if>
-      <if test="tMjobcount != null" >
-        T_Mjobcount,
-      </if>
-      <if test="tMjobcet != null" >
-        T_Mjobcet,
-      </if>
       <if test="tMtype != null" >
         T_Mtype,
       </if>
@@ -101,8 +73,11 @@
       <if test="tMstate != null" >
         T_Mstate,
       </if>
-      <if test="uid != null" >
-        Uid,
+      <if test="tMfrom != null" >
+        T_Mfrom,
+      </if>
+      <if test="tMto != null" >
+        T_Mto,
       </if>
       <if test="column11 != null" >
         Column_11,
@@ -133,24 +108,6 @@
       <if test="tMdate != null" >
         #{tMdate,jdbcType=VARCHAR},
       </if>
-      <if test="tMjobname != null" >
-        #{tMjobname,jdbcType=VARCHAR},
-      </if>
-      <if test="tMjobmarjor != null" >
-        #{tMjobmarjor,jdbcType=VARCHAR},
-      </if>
-      <if test="tMjobplace != null" >
-        #{tMjobplace,jdbcType=VARCHAR},
-      </if>
-      <if test="tMjobsalary != null" >
-        #{tMjobsalary,jdbcType=VARCHAR},
-      </if>
-      <if test="tMjobcount != null" >
-        #{tMjobcount,jdbcType=VARCHAR},
-      </if>
-      <if test="tMjobcet != null" >
-        #{tMjobcet,jdbcType=VARCHAR},
-      </if>
       <if test="tMtype != null" >
         #{tMtype,jdbcType=INTEGER},
       </if>
@@ -160,8 +117,11 @@
       <if test="tMstate != null" >
         #{tMstate,jdbcType=INTEGER},
       </if>
-      <if test="uid != null" >
-        #{uid,jdbcType=INTEGER},
+      <if test="tMfrom != null" >
+        #{tMfrom,jdbcType=INTEGER},
+      </if>
+      <if test="tMto != null" >
+        #{tMto,jdbcType=INTEGER},
       </if>
       <if test="column11 != null" >
         #{column11,jdbcType=VARCHAR},
@@ -192,24 +152,6 @@
       <if test="tMdate != null" >
         T_Mdate = #{tMdate,jdbcType=VARCHAR},
       </if>
-      <if test="tMjobname != null" >
-        T_Mjobname = #{tMjobname,jdbcType=VARCHAR},
-      </if>
-      <if test="tMjobmarjor != null" >
-        T_Mjobmarjor = #{tMjobmarjor,jdbcType=VARCHAR},
-      </if>
-      <if test="tMjobplace != null" >
-        T_Mjobplace = #{tMjobplace,jdbcType=VARCHAR},
-      </if>
-      <if test="tMjobsalary != null" >
-        T_Mjobsalary = #{tMjobsalary,jdbcType=VARCHAR},
-      </if>
-      <if test="tMjobcount != null" >
-        T_Mjobcount = #{tMjobcount,jdbcType=VARCHAR},
-      </if>
-      <if test="tMjobcet != null" >
-        T_Mjobcet = #{tMjobcet,jdbcType=VARCHAR},
-      </if>
       <if test="tMtype != null" >
         T_Mtype = #{tMtype,jdbcType=INTEGER},
       </if>
@@ -219,8 +161,11 @@
       <if test="tMstate != null" >
         T_Mstate = #{tMstate,jdbcType=INTEGER},
       </if>
-      <if test="uid != null" >
-        Uid = #{uid,jdbcType=INTEGER},
+      <if test="tMfrom != null" >
+        T_Mfrom = #{tMfrom,jdbcType=INTEGER},
+      </if>
+      <if test="tMto != null" >
+        T_Mto = #{tMto,jdbcType=INTEGER},
       </if>
       <if test="column11 != null" >
         Column_11 = #{column11,jdbcType=VARCHAR},
@@ -241,19 +186,60 @@
       T_Mbody = #{tMbody,jdbcType=VARCHAR},
       T_Mremark = #{tMremark,jdbcType=VARCHAR},
       T_Mdate = #{tMdate,jdbcType=VARCHAR},
-      T_Mjobname = #{tMjobname,jdbcType=VARCHAR},
-      T_Mjobmarjor = #{tMjobmarjor,jdbcType=VARCHAR},
-      T_Mjobplace = #{tMjobplace,jdbcType=VARCHAR},
-      T_Mjobsalary = #{tMjobsalary,jdbcType=VARCHAR},
-      T_Mjobcount = #{tMjobcount,jdbcType=VARCHAR},
-      T_Mjobcet = #{tMjobcet,jdbcType=VARCHAR},
       T_Mtype = #{tMtype,jdbcType=INTEGER},
       T_Mread = #{tMread,jdbcType=INTEGER},
       T_Mstate = #{tMstate,jdbcType=INTEGER},
-      Uid = #{uid,jdbcType=INTEGER},
+      T_Mfrom = #{tMfrom,jdbcType=INTEGER},
+      T_Mto = #{tMto,jdbcType=INTEGER},
       Column_11 = #{column11,jdbcType=VARCHAR},
       Column_12 = #{column12,jdbcType=VARCHAR},
       Column_13 = #{column13,jdbcType=VARCHAR}
     where T_Mid = #{tMid,jdbcType=INTEGER}
+  </update>
+  <!-- 自己增加的 -->
+  <!-- 获得表中所有的数据 -->
+  <select id="getAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_msg
+    where 1=1
+  </select>
+  <!-- 根据用户fromid获取所有消息 -->
+  <select id="getMsgsByFromId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select 
+    <include refid="Base_Column_List" />
+    from t_msg
+    where T_Mfrom = #{fromid,jdbcType=INTEGER}
+  </select>
+  <!-- 根据用户toid获取所有消息 -->
+  <select id="getMsgsByToId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select 
+    <include refid="Base_Column_List" />
+    from t_msg
+    where T_Mto = #{toid,jdbcType=INTEGER}
+  </select>
+  <!-- 根据用户toandfrom的id获取所有消息 -->
+  <select id="getMsgsByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select 
+    <include refid="Base_Column_List" />
+    from t_msg
+    where T_Mfrom = #{fromid,jdbcType=INTEGER} and T_Mto = #{toid,jdbcType=INTEGER} 
+  </select>
+  <!-- 根据用户toandfrom的id获取所有消息 -->
+  <resultMap id="count" type="java.lang.Integer" ></resultMap>
+  <select id="getMsgCount" resultMap="count" parameterType="java.lang.Integer">
+    select count(*)
+    from t_msg
+    where T_Mto = #{toid,jdbcType=INTEGER} 
+  </select>
+  <select id="getNewMsgCount" resultMap="count" parameterType="java.lang.Integer">
+    select count(*)
+    from t_msg
+    where T_Mto = #{toid,jdbcType=INTEGER} and t_Mread=1
+  </select>
+  <update id="updateToHasRead" parameterType="java.lang.Integer" >
+    update t_msg
+    set T_Mread = 0
+    where T_Mto = #{toid,jdbcType=INTEGER}
   </update>
 </mapper>

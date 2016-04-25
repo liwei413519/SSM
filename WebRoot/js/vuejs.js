@@ -14,21 +14,18 @@ new Vue({
 		menus:{
 			m:[
 			 	{item:"<a href='/SSM/user/personinf.do'>管理员资料</a>"},
-			 	{item:"<a href='/SSM/user/personinf.do'>消息中心</a>"},
-			 	{item:"<a href='/SSM/msg/tomessage.do'>发布管理消息</a>"},
+			 	{item:"<a href='/SSM/job/toaddjob.do'>发布管理消息</a>"},
 			 	{item:"<li class='divider'></li>"},
 			 	{item:"<a href='/SSM/user/changepwd.do'>修改密码</a>"}
 		    ],
 			e:[
 			 	{item:"<a href='/SSM/user/personinf.do'>企业资料</a>"},
-			 	{item:"<a href='/SSM/user/personinf.do'>消息中心</a>"},
-			 	{item:"<a href='/SSM/msg/tomessage.do'>发布招聘</a>"},
+			 	{item:"<a href='/SSM/job/toaddjob.do'>发布招聘</a>"},
 			 	{item:"<li class='divider'></li>"},
 			 	{item:"<a href='/SSM/user/changepwd.do'>修改密码</a>"}
 		    ],
 			r:[
 			 	{item:"<a href='/SSM/user/personinf.do'>个人资料</a>"},
-			 	{item:"<a href='/SSM/user/personinf.do'>消息中心</a>"},
 			 	{item:"<li class='divider'></li>"},
 			 	{item:"<a href='/SSM/user/changepwd.do'>修改密码</a>"}
 			 	

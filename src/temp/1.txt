@@ -1,3 +1,5 @@
+user:---------------------------------
+
 <!-- 下面是自己增加的 -->
   <select id="selectByUsername" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
@@ -9,3 +11,45 @@
   
    //下面是自己增加的
     User selectByUsername(String uname);
+    
+    
+    
+msg:---------------------------------------
+ <!-- 自己增加的 -->
+  <!-- 获得表中所有的数据 -->
+  <select id="getAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_msg
+    where 1=1
+  </select>
+  <!-- 根据用户id获取所有消息 -->
+  <select id="getMsgsByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select 
+    <include refid="Base_Column_List" />
+    from t_msg
+    where Uid = #{uid,jdbcType=INTEGER}
+  </select>
+  
+   /*下面是自己增加的部分*/
+    //获取所有消息
+    List<Msg> getAll();
+    //根据用户id获取所有消息对象
+    List<Msg> getMsgsByUserId(Integer uid);
+  
+  
+job:------------------------------------------
+   /*下面是自己增加的部分*/
+    //获取所有job
+    List<Job> getAllJob();
+    //根据用户id获取所有job
+    List<Job> getJobsByUserId(Integer uid);
+    
+    
+     <!-- 根据用户id获取所有消息 -->
+  <select id="getJobsByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select 
+    <include refid="Base_Column_List" />
+    from t_job
+    where Uid = #{uid,jdbcType=INTEGER}
+  </select>

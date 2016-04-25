@@ -53,13 +53,43 @@
              <param-value>true</param-value>
          </init-param>
      </filter>
-     
      <filter-mapping>
          <filter-name>encodingFilter</filter-name>
          <url-pattern>/*</url-pattern>
      </filter-mapping>
- 
+ 	 <!-- 解决.jsp请求过滤器 -->
+ 	 <filter>
+ 	 	<filter-name>JSPFilter</filter-name>
+ 	 	<filter-class>com.filter.JSPFilter</filter-class>
+ 	 </filter>
+ 	 <filter-mapping>
+ 	 	<filter-name>JSPFilter</filter-name>
+ 	 	<url-pattern>*.jsp</url-pattern>
+ 	 </filter-mapping>
+ 	 <!-- 解决非法请求过滤器 -->
+ 	 <filter>
+ 	 	<filter-name>SessionFilter</filter-name>
+ 	 	<filter-class>com.filter.SessionFilter</filter-class>
+ 	 </filter>
+ 	 <filter-mapping>
+ 	 	<filter-name>SessionFilter</filter-name>
+ 	 	<url-pattern>*.do</url-pattern>
+ 	 </filter-mapping>
+ 	 
      <welcome-file-list>
          <welcome-file>index.jsp</welcome-file>
      </welcome-file-list>
+     
+     <!-- 错误页面配置 -->
+     <error-page>
+     	<!-- 找不到路径资源 -->
+     	<error-code>404</error-code>
+     	<location>/404.jsp</location>
+     </error-page>
+     
+     <error-page>
+     	<!-- 服务器错误页面：500错误 -->
+     	<exception-type>java.lang.Exception</exception-type>
+     	<location>/500.jsp</location>
+     </error-page>
  </web-app>

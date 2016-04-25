@@ -6,11 +6,10 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Write</title>
+		<title>AddJob</title>
 		<link href="/SSM/css/bootstrap.min.css" rel="stylesheet"/>
 		<link href="/SSM/css/ssm.css" rel="stylesheet"/>
 		<link href="/SSM/css/changepwd.css" rel="stylesheet"/>
-		<link href="/SSM/css/writemessage.css" rel="stylesheet"/>
 	</head>
 
 	<body class="table-responsive">
@@ -19,41 +18,7 @@
       	时间：2016-03-31
       	描述：响应式导航组件
       -->
-		<nav class="navbar navbar-default navbar-fixed-top">
-			<div class="container">
-				<div class="navbar-header">
-					<a href="#" class="navbar-brand" style="margin: 0;padding: 0;">
-						<img src="/SSM/img/logo.png" title="<欢迎来到我的主页>" class="img-rounded" /></a>
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-				</div>
-				<div class="collapse navbar-collapse" id="navbar-collapse">
-					<ul class="nav navbar-nav navbar-right">
-						<li class="active"><a href="/SSM/user/home.do"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
-						<c:choose>
-							<c:when test="${user!=null}">
-								<li class="dropdown" id="usermenu">
-									<a href="#" id="welcome" data-toggle="dropdown" ><span class="dropdown-toggle glyphicon glyphicon-apple"></span> {{${user.utype}}} ${empty user.urealname?user.uname:user.urealname }<span class="caret"></span></a>
-									<!-- 根据用户类型选择 Vue实现-->
-									<ul class="dropdown-menu">
-										<li v-for="menu in menus.${user.utype}">
-											{{{menu.item}}}
-										</li>
-									</ul>
-								</li>
-							</c:when>
-							<c:otherwise>
-								<li><a href="#" id="tologin">我的信息</a></li>
-							</c:otherwise>
-						</c:choose>
-						<li><a href="#" id="tologinout"><span class="glyphicon glyphicon-log-out"></span> 退出</a></li>
-					</ul>
-				</div>
-			</div>
-		</nav>
+		<%@ include file="/common/head.jsp" %>
 		
 		<!--
         	作者：332068039@qq.com
@@ -74,14 +39,13 @@
         	时间：2016-03-31
         	描述：发布消息的表单
         -->
-       <div id="writemsg">
+       <div id="writejob">
 	        <div class="container">
 	        	<!-- 上半部分 -->
 	        	<div class="row">
 	        		<div class="col-sm-9 col-md-9 col-md-push-1 col-lg-9 col-lg-push-1 info-left">
-	        			<form id="" method="post" action="" name="" onsubmit="" class="form-horizontal">
+	        			<form id="jobform" method="post" action="/SSM/job/submitjob.do" onsubmit="return submitjob();" class="form-horizontal">
 	        				<input type="hidden" name="uid" value="${user.uid}"/>
-	        				<input type="hidden" name="uname" value="${user.uname }"/>
 			        		<!-- 招聘基本要求 -->
 			        		<div class="container-fluid" style="padding: 0px;">
 								<div class="row info-content">
@@ -90,9 +54,9 @@
 									</div>
 									<div class="col-sm-6 col-md-4 col-lg-4">
 										<div class="form-group has-feedback">
-												<label for="" class="col-lg-4 text-success control-label">职位名称</label>
+												<label for="jobname" class="col-lg-4 text-success control-label">职位名称</label>
 												<div class="col-lg-8">
-													<input type="text" id="" name="" class="form-control inputcoloor" placeholder="Edit"/>
+													<input type="text" id="jobname" name="tJname" class="form-control inputcoloor" placeholder="Edit"/>
 													<span class="glyphicon glyphicon-pencil form-control-feedback"></span>
 												</div>
 												
@@ -100,9 +64,9 @@
 									</div>
 						        	<div class="col-sm-6 col-md-4 col-lg-4">
 										<div class="form-group has-feedback">
-												<label for="" class="col-lg-4 text-success control-label">专业</label>
+												<label for="jobmajor" class="col-lg-4 text-success control-label">专业</label>
 												<div class="col-lg-8">
-													<input type="text" id="" name="" class="form-control inputcoloor" placeholder="Edit"/>
+													<input type="text" id="jobmajor" name="tJmarjor" class="form-control inputcoloor" placeholder="Edit"/>
 													<span class="glyphicon glyphicon-pencil form-control-feedback"></span>
 												</div>
 												
@@ -110,9 +74,9 @@
 									</div>
 									<div class="col-sm-6 col-md-4 col-lg-4">
 										<div class="form-group has-feedback">
-												<label for="" class="col-lg-4 text-success control-label">工作地点</label>
+												<label for="jobspace" class="col-lg-4 text-success control-label">工作地点</label>
 												<div class="col-lg-8">
-													<input type="text" id="" name="" class="form-control inputcoloor" placeholder="Edit"/>
+													<input type="text" id="jobspace" name="tJplace" class="form-control inputcoloor" placeholder="Edit"/>
 													<span class="glyphicon glyphicon-pencil form-control-feedback"></span>
 												</div>
 												
@@ -120,9 +84,9 @@
 									</div>
 									<div class="col-sm-6 col-md-4 col-lg-4">
 										<div class="form-group has-feedback">
-												<label for="" class="col-lg-4 text-success control-label">月薪</label>
+												<label for="jobsalary" class="col-lg-4 text-success control-label">月薪</label>
 												<div class="col-lg-8">
-													<select id="salary" name="salary" class="form-control inputcoloor">
+													<select id="jobsalary" name="tJsalary" class="form-control inputcoloor">
 																<option value="2k-3k" selected>2k-3k</option>
 																<option value="3k-5k">3k-5k</option>
 																<option value="5k-8k">5k-8k</option>
@@ -136,9 +100,9 @@
 									</div>
 									<div class="col-sm-6 col-md-4 col-lg-4">
 										<div class="form-group has-feedback">
-												<label for="" class="col-lg-4 text-success control-label">招聘人数</label>
+												<label for="jobcount" class="col-lg-4 text-success control-label">招聘人数</label>
 												<div class="col-lg-8">
-													<select id="empnumber" name="empnumber" class="form-control inputcoloor">
+													<select id="jobcount" name="tJcount" class="form-control inputcoloor">
 																<option value="1-5" selected>1-5</option>
 																<option value="5-10">5-10</option>
 																<option value="10-20">10-20</option>
@@ -151,9 +115,9 @@
 									</div>
 									<div class="col-sm-6 col-md-4 col-lg-4">
 										<div class="form-group has-feedback">
-												<label for="" class="col-lg-4 text-success control-label">CET</label>
+												<label for="jobcet" class="col-lg-4 text-success control-label">CET</label>
 												<div class="col-lg-8">
-													<select id="sex" name="usex" class="form-control inputcoloor">
+													<select id="jobcet" name="tJcet" class="form-control inputcoloor">
 																<option value="CET-4" selected>CET-4</option>
 																<option value="CET-6">CET-6</option>
 																<option value="无限制">无限制</option>
@@ -173,7 +137,7 @@
 									</div>
 									<div class="col-sm-12 col-md-10 col-md-push-1 col-lg-10 col-lg-push-1" align="center">
 										<div class="form-group has-feedback">
-											<textarea class="form-control inputcoloor selfdescribe"  name="" rows=25 id="" placeholder="岗位说明" ></textarea>
+											<textarea class="form-control inputcoloor selfdescribe"  name="tJbody" rows=25 id="" placeholder="岗位说明" ></textarea>
 											<span class="glyphicon glyphicon-pencil form-control-feedback"></span>
 										</div>
 									</div>
@@ -183,7 +147,7 @@
 							<div class="container-fluid" style="padding: 0;margin-bottom: 10px">
 								<div class="row">
 									<div class="col-sm-6 col-md-12 col-lg-12" align="center"  >
-										<button type="button" id="" class="btn btn-lg" style="background-color:#aaa;color:#000">发布</button>
+										<input type="submit" class="btn btn-lg" style="background-color:#aaa;color:#000" value="发布"/>
 									</div>
 								</div>
 							</div>
@@ -200,13 +164,7 @@
       	时间：2016-03-31
       	描述：foot部分
       	-->
-		<footer id="footer" class="text-muted">
-			<div class="container">
-				<p>企业系统| 合作事宜| 版权投诉</p>
-				<p>苏ICP 备12345678. © 1993-2016 大学生推荐系统. Powered by PANZUHONG.</p>
-			</div>
-		</footer>
-		
+		<%@include file="/common/foot.html" %>
 		<script type="text/javascript" src="/SSM/js/prototype-1.6.0.3.js"></script>
 		<script src="/SSM/js/jquery.min.js"></script>
 		<script src="/SSM/js/bootstrap.min.js"></script>

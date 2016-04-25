@@ -38,4 +38,16 @@
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="10485760" />
 	</bean>
+	
+	<!-- 定义异常处理页面 -->
+	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<!-- 出现异常跳转到/error.jsp页面 -->
+				<prop key="java.sql.SQLException">500</prop>
+				<prop key="java.io.IOException">500</prop>
+			</props>
+		</property>
+	</bean>
+	
  </beans>

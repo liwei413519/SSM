@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.JobMapper" >
+  <resultMap id="BaseResultMap" type="com.model.Job" >
+    <id column="T_Jid" property="tJid" jdbcType="INTEGER" />
+    <result column="T_Jname" property="tJname" jdbcType="VARCHAR" />
+    <result column="T_Jmarjor" property="tJmarjor" jdbcType="VARCHAR" />
+    <result column="T_Jplace" property="tJplace" jdbcType="VARCHAR" />
+    <result column="T_Jsalary" property="tJsalary" jdbcType="VARCHAR" />
+    <result column="T_Jcount" property="tJcount" jdbcType="VARCHAR" />
+    <result column="T_Jcet" property="tJcet" jdbcType="VARCHAR" />
+    <result column="T_Jbody" property="tJbody" jdbcType="VARCHAR" />
+    <result column="Uid" property="uid" jdbcType="INTEGER" />
+    <result column="Column_11" property="column11" jdbcType="VARCHAR" />
+    <result column="Column_12" property="column12" jdbcType="VARCHAR" />
+    <result column="Column_13" property="column13" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    T_Jid, T_Jname, T_Jmarjor, T_Jplace, T_Jsalary, T_Jcount, T_Jcet, T_Jbody, Uid, Column_11, 
+    Column_12, Column_13
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_job
+    where T_Jid = #{tJid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_job
+    where T_Jid = #{tJid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.model.Job" >
+    insert into t_job (T_Jid, T_Jname, T_Jmarjor, 
+      T_Jplace, T_Jsalary, T_Jcount, 
+      T_Jcet, T_Jbody, Uid, 
+      Column_11, Column_12, Column_13
+      )
+    values (#{tJid,jdbcType=INTEGER}, #{tJname,jdbcType=VARCHAR}, #{tJmarjor,jdbcType=VARCHAR}, 
+      #{tJplace,jdbcType=VARCHAR}, #{tJsalary,jdbcType=VARCHAR}, #{tJcount,jdbcType=VARCHAR}, 
+      #{tJcet,jdbcType=VARCHAR}, #{tJbody,jdbcType=VARCHAR}, #{uid,jdbcType=INTEGER}, 
+      #{column11,jdbcType=VARCHAR}, #{column12,jdbcType=VARCHAR}, #{column13,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.Job" >
+    insert into t_job
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tJid != null" >
+        T_Jid,
+      </if>
+      <if test="tJname != null" >
+        T_Jname,
+      </if>
+      <if test="tJmarjor != null" >
+        T_Jmarjor,
+      </if>
+      <if test="tJplace != null" >
+        T_Jplace,
+      </if>
+      <if test="tJsalary != null" >
+        T_Jsalary,
+      </if>
+      <if test="tJcount != null" >
+        T_Jcount,
+      </if>
+      <if test="tJcet != null" >
+        T_Jcet,
+      </if>
+      <if test="tJbody != null" >
+        T_Jbody,
+      </if>
+      <if test="uid != null" >
+        Uid,
+      </if>
+      <if test="column11 != null" >
+        Column_11,
+      </if>
+      <if test="column12 != null" >
+        Column_12,
+      </if>
+      <if test="column13 != null" >
+        Column_13,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tJid != null" >
+        #{tJid,jdbcType=INTEGER},
+      </if>
+      <if test="tJname != null" >
+        #{tJname,jdbcType=VARCHAR},
+      </if>
+      <if test="tJmarjor != null" >
+        #{tJmarjor,jdbcType=VARCHAR},
+      </if>
+      <if test="tJplace != null" >
+        #{tJplace,jdbcType=VARCHAR},
+      </if>
+      <if test="tJsalary != null" >
+        #{tJsalary,jdbcType=VARCHAR},
+      </if>
+      <if test="tJcount != null" >
+        #{tJcount,jdbcType=VARCHAR},
+      </if>
+      <if test="tJcet != null" >
+        #{tJcet,jdbcType=VARCHAR},
+      </if>
+      <if test="tJbody != null" >
+        #{tJbody,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="column11 != null" >
+        #{column11,jdbcType=VARCHAR},
+      </if>
+      <if test="column12 != null" >
+        #{column12,jdbcType=VARCHAR},
+      </if>
+      <if test="column13 != null" >
+        #{column13,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.Job" >
+    update t_job
+    <set >
+      <if test="tJname != null" >
+        T_Jname = #{tJname,jdbcType=VARCHAR},
+      </if>
+      <if test="tJmarjor != null" >
+        T_Jmarjor = #{tJmarjor,jdbcType=VARCHAR},
+      </if>
+      <if test="tJplace != null" >
+        T_Jplace = #{tJplace,jdbcType=VARCHAR},
+      </if>
+      <if test="tJsalary != null" >
+        T_Jsalary = #{tJsalary,jdbcType=VARCHAR},
+      </if>
+      <if test="tJcount != null" >
+        T_Jcount = #{tJcount,jdbcType=VARCHAR},
+      </if>
+      <if test="tJcet != null" >
+        T_Jcet = #{tJcet,jdbcType=VARCHAR},
+      </if>
+      <if test="tJbody != null" >
+        T_Jbody = #{tJbody,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null" >
+        Uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="column11 != null" >
+        Column_11 = #{column11,jdbcType=VARCHAR},
+      </if>
+      <if test="column12 != null" >
+        Column_12 = #{column12,jdbcType=VARCHAR},
+      </if>
+      <if test="column13 != null" >
+        Column_13 = #{column13,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where T_Jid = #{tJid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.Job" >
+    update t_job
+    set T_Jname = #{tJname,jdbcType=VARCHAR},
+      T_Jmarjor = #{tJmarjor,jdbcType=VARCHAR},
+      T_Jplace = #{tJplace,jdbcType=VARCHAR},
+      T_Jsalary = #{tJsalary,jdbcType=VARCHAR},
+      T_Jcount = #{tJcount,jdbcType=VARCHAR},
+      T_Jcet = #{tJcet,jdbcType=VARCHAR},
+      T_Jbody = #{tJbody,jdbcType=VARCHAR},
+      Uid = #{uid,jdbcType=INTEGER},
+      Column_11 = #{column11,jdbcType=VARCHAR},
+      Column_12 = #{column12,jdbcType=VARCHAR},
+      Column_13 = #{column13,jdbcType=VARCHAR}
+    where T_Jid = #{tJid,jdbcType=INTEGER}
+  </update>
+  <!-- 自己增加的 -->
+  <!-- 获得表中所有的数据 -->
+  <select id="getAllJob" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_job
+    where 1=1
+  </select>
+  <!-- 根据用户id获取所有消息 -->
+  <select id="getJobsByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select 
+    <include refid="Base_Column_List" />
+    from t_job
+    where Uid = #{uid,jdbcType=INTEGER}
+  </select>
+</mapper>

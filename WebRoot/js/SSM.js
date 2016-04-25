@@ -28,7 +28,7 @@ $('#tologinout').on('click',function(){
 		$.ajax({
 			url:"/SSM/user/loginout.do",
 			async:'false',
-			type:'get',
+			type:'post',
 			cache:'false',
 			dataType:'html',//返回的是一个页面（包含在data里面）
 			success:function(data,type){
@@ -46,6 +46,11 @@ $('#tologinout').on('click',function(){
 
 //点击我的信息弹出登录注册的提示框
 $('#tologin').on('click',function(){
+//	如果不是在主页：因为我的程序里面modal放在主页home，虽然可以放到其他页面，但是如果页面太多就很恶心了，所以在这里改改
+//	if(document.getElementById('loginmodal')==null){//该页面没有登录模态框，转到主页
+//		alert("请回到主页去登录！");
+//		refreshtohome(0, "/SSM/user/home.do");
+//	}
 	$('#loginmodal').modal('toggle');
 });
 function refreshtohome(time,path){
@@ -450,3 +455,63 @@ var vue=new Vue({
 //设置模态框：点击空白处不隐藏模态框  backdrop:static时,空白处不关闭.keyboard:false时,esc键盘不关闭. ---这是打开的方法
 //如果设置通用方法，最好是在定义<div class="modal">的时候加上 data-backdrop="static"
 //$('.modal').modal({backdrop: 'static', keyboard: false});
+
+/***
+ * 提交发布招聘消息的请求
+ * 
+ * */
+function submitjob(){
+	//这里要判断用户是否填写了,只有填写了才允许提交请求
+	//TODO
+	
+	// jquery 表单提交
+	$("#jobform").ajaxSubmit(function(message) { 
+		// 对于表单提交成功后处理，message为提交页面的返回内容
+		if(message=="success"){//文件上传成功
+			alert("消息发布成功！");
+		}else{
+			var obj=message.evalJSON();
+			alert("信息提示:\n"+obj.fail);
+		}
+	}); 
+	return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转
+}
+/**
+ *	投递简历 
+ */
+$('#postresumebtn').on('click',function(){
+	//判断用户是否登录
+	if(document.getElementById('welcome')==null){
+		alert("请先登录！");
+		return;
+	}
+	 //让用户输入一些简单的语句
+     //获取岗位名称
+	var jobname=$('#jobname').html();
+	 var msgbody = prompt("简单说明:", "我愿意应聘贵公司的"+jobname+"职位！希望你查看我的简历！"); //将输入的内容赋给变量 name ，  
+	//得到消息的fromid 和 toid
+	var fromid=$('#fromid').val();
+	var toid=$('#toid').val();
+	//发送ajax异步请求
+	$.ajax({
+		url:"/SSM/job/postresume.do",
+		type:'post',
+		cache:'false',
+		data:{
+			"fromid":fromid,
+			"toid":toid,
+			"msgbody":msgbody
+		},
+		success:function(data,type){
+			alert("简历提交成功！");
+		},
+		error:function(data){
+			alert("请求发送错误：请检查网络设置！");
+		}
+	});
+});
+
+/***
+ * BootStrap-Table
+ */
+

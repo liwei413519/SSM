@@ -2,6 +2,8 @@ package com.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import net.sf.json.JSONObject;
@@ -11,9 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.model.Job;
 import com.model.User;
 import com.model.vo.V_LgoinInf;
 import com.model.vo.V_RegInf;
+import com.service.JobService;
 import com.service.UserService; 
 import com.util.MD5Util;
 
@@ -30,18 +35,29 @@ public class UserController {
 	@Autowired
 	private UserService userService=null;
 	@Autowired
+	private JobService jobService=null;
+	@Autowired
 	private HttpServletRequest request=null;
+	@Autowired
+	private MsgController msgController=null;
 	@Autowired
 	private	HttpSession session=null;
 	/*----------回到主页-------------*/
 	@RequestMapping("/home")
 	public String gohome(){
-		//更新session中的user
+		//获取session中的user
 		User oldUser=(User) session.getAttribute("user");
-		if(oldUser!=null){
+		if(oldUser!=null){//如果user存在
+			//更新session中的user
 			User user=userService.getUser(oldUser.getUname());
 			session.setAttribute("user", user);
+			//将新消息数量存入request
+			msgController.putMessageCount(request);
 		}
+		//刷新消息（就算没有登录也要刷新，业务逻辑而已）存到session
+		List<Job> jobs=jobService.getAllJobs();
+		session.setAttribute("jobs", jobs);
+		//从数据库获取消息数量，放到request("msgcount")
 		return "home";
 	}
 
@@ -114,16 +130,6 @@ public class UserController {
 			return "1";//表示用户存在
 		}
 	}
-//	//重载上面的方法
-//	public String exist(String username){
-//		//调用服务层
-//		User user=userService.getUser(username);
-//		if(user==null){
-//			return "0";//表示用户不存在
-//		}else{
-//			return "1";//表示用户存在
-//		}
-//	}
 
 	/**
 	 * 退出登录
@@ -159,6 +165,8 @@ public class UserController {
 		if(oldUser!=null){
 			User user=userService.getUser(oldUser.getUname());
 			session.setAttribute("user", user);
+			//将新消息数量存入request
+			msgController.putMessageCount(request);
 		}
 		//返回personinf.jsp这个页面
 		return "personinf";
@@ -168,7 +176,8 @@ public class UserController {
 	 */
 	@RequestMapping(value="/changepwd",produces = "text/html;charset=UTF-8")
 	public String changepwd(){
-		//返回changepwd.jsp这个页面
+		//将新消息数量存入request
+		msgController.putMessageCount(request);
 		return "changepwd";
 	}
 	/**
@@ -263,5 +272,12 @@ public class UserController {
 			return "success";
 		}
 		return "{'fail':'密码修改失败！'}";
+	}
+	/*跳转到about.jsp页面*/
+	@RequestMapping(value="about",produces = "text/html;charset=UTF-8")
+	public String about(){
+		//将新消息数量存入request
+		msgController.putMessageCount(request);
+		return "about";
 	}
 }

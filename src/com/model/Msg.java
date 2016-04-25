@@ -1,43 +1,38 @@
 package com.model;
 
 public class Msg {
-    private Integer tMid;
+	//-----------自己增加静态变量
+	public static int JOBE_POST_TYPE=1;//消息类型为岗位投递（求职者--->企业）
+	public static int MSG_NOREAD=1;//消息未读
+	public static int MSG_HASREAD=0;//消息已读
+	//-----------自己增加部分结束
+    protected Integer tMid;
 
-    private String tMhead;
+    protected String tMhead;
 
-    private String tMpicture;
+    protected String tMpicture;
 
-    private String tMbody;
+    protected String tMbody;
 
-    private String tMremark;
+    protected String tMremark;
 
-    private String tMdate;
+    protected String tMdate;
 
-    private String tMjobname;
+    protected Integer tMtype;
 
-    private String tMjobmarjor;
+    protected Integer tMread;
 
-    private String tMjobplace;
+    protected Integer tMstate;
 
-    private String tMjobsalary;
+    protected Integer tMfrom;
 
-    private String tMjobcount;
+    protected Integer tMto;
 
-    private String tMjobcet;
+    protected String column11;
 
-    private Integer tMtype;
+    protected String column12;
 
-    private Integer tMread;
-
-    private Integer tMstate;
-
-    private Integer uid;
-
-    private String column11;
-
-    private String column12;
-
-    private String column13;
+    protected String column13;
 
     public Integer gettMid() {
         return tMid;
@@ -87,54 +82,6 @@ public class Msg {
         this.tMdate = tMdate == null ? null : tMdate.trim();
     }
 
-    public String gettMjobname() {
-        return tMjobname;
-    }
-
-    public void settMjobname(String tMjobname) {
-        this.tMjobname = tMjobname == null ? null : tMjobname.trim();
-    }
-
-    public String gettMjobmarjor() {
-        return tMjobmarjor;
-    }
-
-    public void settMjobmarjor(String tMjobmarjor) {
-        this.tMjobmarjor = tMjobmarjor == null ? null : tMjobmarjor.trim();
-    }
-
-    public String gettMjobplace() {
-        return tMjobplace;
-    }
-
-    public void settMjobplace(String tMjobplace) {
-        this.tMjobplace = tMjobplace == null ? null : tMjobplace.trim();
-    }
-
-    public String gettMjobsalary() {
-        return tMjobsalary;
-    }
-
-    public void settMjobsalary(String tMjobsalary) {
-        this.tMjobsalary = tMjobsalary == null ? null : tMjobsalary.trim();
-    }
-
-    public String gettMjobcount() {
-        return tMjobcount;
-    }
-
-    public void settMjobcount(String tMjobcount) {
-        this.tMjobcount = tMjobcount == null ? null : tMjobcount.trim();
-    }
-
-    public String gettMjobcet() {
-        return tMjobcet;
-    }
-
-    public void settMjobcet(String tMjobcet) {
-        this.tMjobcet = tMjobcet == null ? null : tMjobcet.trim();
-    }
-
     public Integer gettMtype() {
         return tMtype;
     }
@@ -159,12 +106,20 @@ public class Msg {
         this.tMstate = tMstate;
     }
 
-    public Integer getUid() {
-        return uid;
+    public Integer gettMfrom() {
+        return tMfrom;
     }
 
-    public void setUid(Integer uid) {
-        this.uid = uid;
+    public void settMfrom(Integer tMfrom) {
+        this.tMfrom = tMfrom;
+    }
+
+    public Integer gettMto() {
+        return tMto;
+    }
+
+    public void settMto(Integer tMto) {
+        this.tMto = tMto;
     }
 
     public String getColumn11() {
